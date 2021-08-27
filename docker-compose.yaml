@@ -1,0 +1,21 @@
+version: "3"
+services:
+  # mysql:
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    volumes:
+      - ./config/nginx.conf:/etc/nginx/nginx.conf
+      - ./log/error.log:/etc/nginx/error_log.log
+      - ./log/access.log:/etc/nginx/access_log.log
+      - ./config/index.html:/etc/nginx/html/index.html
+      - ./cache/:/etc/nginx/cache
+      - ../nginx-volume:/usr/share/nginx/html
+    ports:
+      - 80:80
+      - 81:81
+
+networks:
+  default:
+    name: external-network
